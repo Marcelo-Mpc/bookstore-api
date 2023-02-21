@@ -1,14 +1,24 @@
 package com.mpc.bookstore.dominio;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import java.util.Objects;
 
-public class Categoria {
+@Entity
+public class Categoria implements Serializable {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome, descricao;
-
+	@OneToMany(mappedBy = "categoria")
 	private List<Livro> livros = new ArrayList<Livro>();
 
 	public Categoria() {
